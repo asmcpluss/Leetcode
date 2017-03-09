@@ -1,5 +1,10 @@
 package test;
 
+/**
+ * error results,need to modify
+ * @author Dell
+ *
+ */
 public class DragonRead {
 
 	public static void main(String args[]){
