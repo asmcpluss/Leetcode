@@ -1,16 +1,122 @@
 package test;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 public class AliTest  {
 
+	
 	public static void main(String[] args) {
-		
+//		int m,n,t;
+//		int s1,s2,e;
+//		Scanner scan = new Scanner(System.in);
+//		m = scan.nextInt();
+//		n = scan.nextInt();
+//		t = scan.nextInt();
+//		s1=scan.nextInt();
+//		s2 = scan.nextInt();
+//		e = scan.nextInt();
+		System.out.println(frequencySort("tree"));
 	}
-
+	
+	/**
+	 * Given a string, sort it in decreasing order based on the frequency of characters.
+	 * e.g tree-->eetr/eert
+	 * @param s
+	 * @return
+	 */
+	public static String frequencySort(String s) {
+		if(s.length()<=2){
+            return s;
+        }
+        int count[] = new int[128];
+        int max = 0;
+        for(char ch:s.toCharArray()){
+        	count[ch] += 1;
+        	max = Math.max(max, count[ch]);
+        }
+        String tmp[] = new String[max+1];
+        for(int i=0;i<128;i++){
+        	if(count[i]!=0){
+        		if(tmp[count[i]]==null){
+        			tmp[count[i]] = ""+(char)i;
+        		}
+        		else{
+        			tmp[count[i]] += (char)i;
+        		}
+        	}
+        }
+        //使用StringBuilder目的是为了防止在字符串(String)更新的过程中一直分配新的内存(超时)
+        StringBuilder result = new StringBuilder();
+        for(int i=max;i>=0;i--){
+        	String str = tmp[i];
+        	if(str==null) continue;
+        	for(int j=0;j<str.length();j++){
+        		for(int k=0;k<i;k++){
+        			result.append(str.charAt(j));
+        		}
+        	}
+        }
+        return result.toString();
+    }
+	
+	/**give a list of time points,find the mininum difference minutes
+	 * 00:00-23:59
+	 * @param timePoints
+	 * @return
+	 */
+	 public static int findMinDifference(List<String> timePoints) {
+	        int[] timeArr = new int[1440];
+	        int left=1439,right=0;
+	        if(timePoints.size()>1440){
+	            return 0;
+	        }
+	        for(String t:timePoints){
+	            String[] splits = t.split(":");
+	            int hour = (splits[0].charAt(0)-'0')*10+splits[0].charAt(1)-'0';
+	            int minute = (splits[1].charAt(0)-'0')*10+splits[1].charAt(1)-'0';
+	            int minutes = hour*60+minute;
+	            if(timeArr[minutes]==0){
+	                timeArr[minutes] = 1;
+	            }
+	            else if(timeArr[minutes]==1) return 0;
+	            if(minutes<left){
+	                left = minutes;
+	            }
+	            if(minutes>right){
+	                right = minutes;
+	                
+	            }
+	        }
+	        int min = 1440-right+left;
+	        int last = -1;
+	        //test
+	        System.out.println(timeArr[1404]);
+	        for(int i=0;i<1440;i++){
+	            if(timeArr[i]==1){
+	                if(last==-1){
+	                    last = i;
+	                    continue;
+	                }
+	                if((i-last)<min){
+	                    min = Math.abs(i-last);  
+	                }
+	                last = i;
+	            }
+	        }
+	        return min;
+	    }
+	 
+	 /**
+	  * leetcode contest2 test2
+	  * @param picture
+	  * @return
+	  */
 	 public int findLonelyPixel(char[][] picture) {
 	        int row = picture.length,col = picture[0].length;
 	        int[] rowSign = new int[row];
@@ -59,6 +165,12 @@ public class AliTest  {
 	        return count;
 	    }
 	 
+	 /**
+	  * not finished yet
+	  * @param ring
+	  * @param key
+	  * @return
+	  */
 	 public int findRotateSteps(String ring, String key) {
 		  int length = ring.length();
 		  int count = key.length();
