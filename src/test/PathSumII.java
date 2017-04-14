@@ -7,33 +7,31 @@ public class PathSumII {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		TreeNode root = new TreeNode(5);
-		TreeNode n1 = new TreeNode(4);
-		TreeNode n2 = new TreeNode(8);
-		TreeNode n3 = new TreeNode(11);
-		TreeNode n4 = new TreeNode(13);
-		TreeNode n5 = new TreeNode(4);
-		TreeNode n6 = new TreeNode(7);
-		TreeNode n7 = new TreeNode(2);
-		TreeNode n8 = new TreeNode(5);
-		TreeNode n9 = new TreeNode(1);
+		TreeNode root = new TreeNode(10);
+		TreeNode n1 = new TreeNode(5);
+		TreeNode n2 = new TreeNode(-3);
+		TreeNode n3 = new TreeNode(3);
+		TreeNode n4 = new TreeNode(2);
+		TreeNode n5 = new TreeNode(11);
+		TreeNode n6 = new TreeNode(3);
+		TreeNode n7 = new TreeNode(-2);
+		TreeNode n8 = new TreeNode(1);
 		root.right = n2;
 		root.left = n1;
 		n1.left = n3;
-		n1.right = null;
-		n2.left = n4;
+		n1.right = n4;
+		n2.left = null;
 		n2.right = n5;
 		n3.left = n6;
 		n3.right = n7;
 		n4.left = null;
-		n4.right = null;
-		n5.left = n8;
-		n5.right = n9;
+		n4.right = n8;
+		n5.left = null;
+		n5.right = null;
 		n6.left = n6.right = null;
 		n7.left = n7.right = null;
 		n8.left = n8.right = null;
-		n9.left = n9.right = null;
-		System.out.println(pathSum(root,22));
+		System.out.println(pathSum2(root,8));
 	}
 
 	/**
@@ -76,4 +74,30 @@ public class PathSumII {
         }
         return paths;
     }
+	
+	/**
+	 * Find the number of paths that sum to a given value.
+	 * The path does not need to start or end at the root or a leaf, 
+	 * but it must go downwards (traveling only from parent nodes to child nodes).
+	 * @param root
+	 * @param sum
+	 * @return
+	 */
+	public static int pathSum2(TreeNode root, int sum) {
+        int result = 0;
+        if(root==null){
+        	return 0;
+        }
+        result = hasPath(root,sum)+pathSum2(root.left,sum)+pathSum2(root.right,sum);
+        return result;
+    }
+	public static int hasPath(TreeNode root,int sum){
+		if(root==null){
+            return 0;
+        }
+        if(root.val==sum){
+            return 1+hasPath(root.left,0)+hasPath(root.right,0);
+        }
+        return hasPath(root.left,sum-root.val)+hasPath(root.right,sum-root.val);
+	}
 }
