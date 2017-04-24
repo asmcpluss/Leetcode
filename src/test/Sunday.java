@@ -4,8 +4,8 @@ public class Sunday {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		String str = "codemonkey";
-		String mode = "onk";
+		String str = "codemonkeyadf";
+		String mode = "key";
 		System.out.println(sunday(str,mode));
 
 	}
@@ -41,10 +41,11 @@ public class Sunday {
 					continue;
 				}
 				else{//寻找str当前字符在mode中最后出现的位置
-					int index = mode.indexOf(ch);
-					while(mode.indexOf(ch,index+1)!=-1&&index<m-1){
-						index = mode.indexOf(ch,index+1);
-					}
+					int index = mode.lastIndexOf(ch);
+//					int index = mode.indexOf(ch);
+//					while(mode.indexOf(ch,index+1)!=-1&&index<m-1){
+//						index = mode.indexOf(ch,index+1);
+//					}
 					j = 0;
 					i += 1;
 				}
