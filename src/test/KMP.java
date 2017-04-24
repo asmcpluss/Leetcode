@@ -15,7 +15,6 @@ public class KMP {
 		for(int i=0;i<result.size();i++){
 			System.out.print(result.get(i)+" ");
 		}
-
 	}
 	public static ArrayList<Integer> matchString(String str,String subStr){
 		ArrayList<Integer> appearPos = new ArrayList<Integer>();
