@@ -43,7 +43,7 @@ public class Sunday {
 				else{//寻找str当前字符在mode中最后出现的位置
 					int index = mode.lastIndexOf(ch);
 					j = 0;
-					i += 1;
+					i += m-index;
 				}
 			}
 			else{//顺序匹配
