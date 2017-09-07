@@ -21,9 +21,22 @@ public class AliTest  {
 //		s1=scan.nextInt();
 //		s2 = scan.nextInt();
 //		e = scan.nextInt();
-		System.out.println(frequencySort("tree"));
+		int arr[] = {4,1,2,3,5};
+		System.out.println(xNotInArr(arr));
 	}
-	
+	/**
+	 * arr[n]的数字在[0,n]范围内，且各不相同，问[0,n]哪个数字没有出现在arr中
+	 * @param arr
+	 * @return
+	 */
+	public static int xNotInArr(int[] arr){
+		int result=arr.length;
+		for(int i=0;i<arr.length;i++){
+			result ^= arr[i];
+			result ^= i;
+		}
+		return result;
+	}
 	/**
 	 * Given a string, sort it in decreasing order based on the frequency of characters.
 	 * e.g tree-->eetr/eert

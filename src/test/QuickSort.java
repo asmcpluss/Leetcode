@@ -69,7 +69,7 @@ public class QuickSort {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-		int[] array  = {3,8,5,3,2,6,1,4,7,6,0,1,3};
+		int[] array  = {48,78,2,16,66,97,43,16};
 		QuickSort obj = new QuickSort(array);
 		obj.quick_sort(0,array.length-1);
 		int result[] = obj.getArr();

@@ -88,4 +88,12 @@ public class Main {
         System.out.println(String.valueOf(res));    
 
     }
+
+
+	public static void SwapWithZero(int[] array, int len, int n) {
+		// TODO Auto-generated method stub
+		int tmp = array[0];
+		array[0] = array[n];
+		array[n] = tmp;
+	}
 }
